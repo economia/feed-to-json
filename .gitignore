@@ -9,3 +9,6 @@ config.js
 app.js
 .log
 note.txt
+.idea
+dist
+tmp

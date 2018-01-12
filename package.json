@@ -1,10 +1,12 @@
 {
-  "name": "rss-to-json",
-  "version": "1.0.3",
+  "name": "smart-rss-to-json",
+  "version": "0.0.1",
   "description": "Rss to Json: RSS and Atom feed generator for Node.js",
+  "main": "dist/index.js",
+  "module": "src/index.js",
   "author": {
-    "name": "Nasa8x",
-    "email": "nasa8x@gmail.com"
+    "name": "kxmatejka",
+    "email": "kx.matejka@gmail.com"
   },
   "license": "MIT",
   "dependencies": {
@@ -13,13 +15,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/nasa8x/rss-to-json.git"
+    "url": "git+https://github.com/kxmatejka/smart-rss-to-json.git"
   },
   "bugs": {
-    "url": "https://github.com/nasa8x/rss-to-json/issues"
+    "url": "https://github.com/kxmatejka/smart-rss-to-json/issues"
   },
-  "homepage": "https://github.com/nasa8x/rss-to-json#readme",
+  "homepage": "https://github.com/kxmatejka/smart-rss-to-json#readme",
   "keywords": [
+    "smart-rss-to-json",
     "rss-to-json",
     "rss",
     "rssparser",
@@ -44,5 +47,14 @@
     "feedreader",
     "feed reader",
     "rss json"
-  ]
+  ],
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-es2015": "^6.24.1"
+  },
+  "scripts": {
+    "build": "babel src --presets babel-preset-es2015 --out-dir dist",
+    "watch": "babel --watch src --presets babel-preset-es2015 --out-dir dist",
+    "prepublish": "npm run build"
+  }
 }
