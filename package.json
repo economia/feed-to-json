@@ -1,6 +1,6 @@
 {
   "name": "smart-rss-to-json",
-  "version": "0.0.1",
+  "version": "1.0.1",
   "description": "Rss to Json: RSS and Atom feed generator for Node.js",
   "main": "dist/index.js",
   "module": "src/index.js",
