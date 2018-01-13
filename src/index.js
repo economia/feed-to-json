@@ -155,7 +155,6 @@ export default class Rss {
    */
   parseItem(data) {
     const item = {}
-    item.media = {}
 
     if (data.title) {
       item.title = data.title[0]
@@ -170,21 +169,33 @@ export default class Rss {
       item.date = data.pubDate[0]
       item.timestamp = new Date(data.pubDate[0]).getTime()
     }
+    item.media = this.parseMedia(data)
+
+    return item
+  }
+
+  /**
+   * @param data
+   * @returns {{}}
+   */
+  parseMedia(data) {
+    const media = {}
+
     if (data['media:content']) {
-      item.media.content = data['media:content']
+      media.content = data['media:content']
     }
     if (data['media:thumbnail']) {
-      item.media.thumbnail = data['media:thumbnail']
+      media.thumbnail = data['media:thumbnail']
     }
     if (data['media:group'] && data['media:group'][0] && data['media:group'][0]['media:content']) {
       if (data['media:group'][0]['media:content']) {
-        item.media.content = data['media:group'][0]['media:content']
+        media.content = data['media:group'][0]['media:content']
       }
       if (data['media:group'][0]['media:thumbnail']) {
-        item.media.thumbnail = data['media:group'][0]['media:thumbnail']
+        media.thumbnail = data['media:group'][0]['media:thumbnail']
       }
     }
 
-    return item
+    return media
   }
 }
