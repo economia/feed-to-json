@@ -11,7 +11,7 @@ npm install smart-rss-to-json --save
 
 ## ES6 import
 
-```ecmascript 6
+```js
 import Rss from 'smart-rss-to-json'
 ``` 
 
@@ -23,7 +23,7 @@ const Rss = require('smart-rss-to-json')
 
 ## Example
 
-```ecmascript 6
+```js
 import Rss from 'smart-rss-to-json'
 
 const rss = new Rss()
