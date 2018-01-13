@@ -9,9 +9,11 @@ export default class Rss {
    * @param options
    */
   constructor(options) {
-    this.options = Object.assign({}, options, {
-      timeout: 1000
-    })
+    this.options = Object.assign({}, {
+      timeout: 1000,
+      maxCount: null,
+      maxTimeDiff: null
+    }, options)
   }
 
   /**
@@ -75,9 +77,22 @@ export default class Rss {
    */
   parseRssChannel(data) {
     return new Promise(resolve => {
+      let index = 0
       const rawChannel = Array.isArray(data.rss.channel) ? data.rss.channel[0] : data.rss.channel
+      const maxCount = (this.options.maxCount) ? this.options.maxCount : rawChannel.item.length
+      const maxTimeDiff = (this.options.maxTimeDiff) ? new Date().getTime() - this.options.maxTimeDiff * 1000 : null
       const parsedChannel = this.parseChannelMeta(rawChannel)
-      parsedChannel.items = rawChannel.item.map(item => this.parseItem(item))
+      parsedChannel.items = []
+
+      while (index < rawChannel.item.length && parsedChannel.items.length < maxCount) {
+        const item = this.parseItem(rawChannel.item[index])
+
+        if (maxTimeDiff && (item.timestamp >= maxTimeDiff)) {
+          parsedChannel.items.push(item)
+        }
+
+        index++
+      }
 
       return resolve(parsedChannel)
     })
