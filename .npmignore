@@ -8,4 +8,5 @@ obj/*
 config.js
 .log
 note.txt
+.idea
 tmp
