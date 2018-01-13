@@ -117,36 +117,10 @@ export default class Rss {
       meta.name = meta.domain.split('.').slice(0, 1)[0]
     }
     if (data.image) {
-      meta.image = this.parseChannelImage(data.image[0])
+      meta.image = this.parseImage(data.image[0])
     }
 
     return meta
-  }
-
-  /**
-   * @param data
-   * @returns {{}}
-   */
-  parseChannelImage(data) {
-    const image = {}
-
-    if (data.url) {
-      image.src = data.url[0]
-    }
-    if (data.title) {
-      image.title = data.title[0]
-    }
-    if (data.description) {
-      image.alt = data.description[0]
-    }
-    if (data.width) {
-      image.width = data.width[0]
-    }
-    if (data.height) {
-      image.height = data.height[0]
-    }
-
-    return image
   }
 
   /**
@@ -182,20 +156,46 @@ export default class Rss {
     const media = {}
 
     if (data['media:content']) {
-      media.content = data['media:content']
+      media.content = data['media:content'].map(media => this.parseImage(media))
     }
     if (data['media:thumbnail']) {
-      media.thumbnail = data['media:thumbnail']
+      media.thumbnail = this.parseImage(data['media:thumbnail'][0])
     }
-    if (data['media:group'] && data['media:group'][0] && data['media:group'][0]['media:content']) {
+    if (data['media:group'] && data['media:group'][0]) {
       if (data['media:group'][0]['media:content']) {
-        media.content = data['media:group'][0]['media:content']
+        media.content = data['media:group'][0]['media:content'].map(media => this.parseImage(media))
       }
       if (data['media:group'][0]['media:thumbnail']) {
-        media.thumbnail = data['media:group'][0]['media:thumbnail']
+        media.thumbnail = this.parseImage(data['media:group'][0]['media:thumbnail'][0])
       }
     }
 
     return media
+  }
+
+  /**
+   * @param data
+   * @returns {{}}
+   */
+  parseImage(data) {
+    const image = {}
+
+    if (data.url) {
+      image.url = data.url[0]
+    }
+    if (data.title) {
+      image.title = data.title[0]
+    }
+    if (data.description) {
+      image.description = data.description[0]
+    }
+    if (data.width) {
+      image.width = data.width[0]
+    }
+    if (data.height) {
+      image.height = data.height[0]
+    }
+
+    return image
   }
 }
