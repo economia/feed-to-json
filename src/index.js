@@ -18,9 +18,12 @@ export default class Rss {
 
   /**
    * @param url
+   * @param options
    * @returns {Promise.<TResult>}
    */
-  load(url) {
+  load(url, options) {
+    this.options = Object.assign({}, this.options, options)
+
     return this.sendRequest(url)
       .then(response => {
         return this.parseXmlToJson(response.xml)
@@ -87,7 +90,7 @@ export default class Rss {
       while (index < rawChannel.item.length && parsedChannel.items.length < maxCount) {
         const item = this.parseItem(rawChannel.item[index])
 
-        if (maxTimeDiff && (item.timestamp >= maxTimeDiff)) {
+        if (!maxTimeDiff || item.timestamp >= maxTimeDiff) {
           parsedChannel.items.push(item)
         }
 
