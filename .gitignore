@@ -12,3 +12,5 @@ note.txt
 .idea
 dist
 tmp
+lib/
+!lib/.gitkeep

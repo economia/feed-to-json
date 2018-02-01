@@ -1,13 +1,12 @@
 {
-  "name": "smart-rss-to-json",
-  "version": "1.2.0",
-  "description": "Rss to Json: RSS and Atom feed generator for Node.js",
-  "main": "dist/index.js",
+  "name": "feed-to-json",
+  "version": "1.0.0",
+  "description": "Feed to Json: RSS and Atom feed generator for Node.js",
   "module": "src/index.js",
-  "author": {
-    "name": "kxmatejka",
-    "email": "kx.matejka@gmail.com"
-  },
+  "main": "lib/feed-to-json.js",
+  "contributors": [
+    "Kryštof Matějka <krystof.matejka@economia.cz>"
+  ],
   "license": "MIT",
   "dependencies": {
     "request": "^2.83.0",
@@ -15,46 +14,29 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/kxmatejka/smart-rss-to-json.git"
+    "url": "git+https://bitbucket.org/it-economia/feed-to-json.git"
   },
-  "bugs": {
-    "url": "https://github.com/kxmatejka/smart-rss-to-json/issues"
-  },
-  "homepage": "https://github.com/kxmatejka/smart-rss-to-json#readme",
+  "homepage": "https://bitbucket.org/it-economia/feed-to-json/overview",
   "keywords": [
-    "smart-rss-to-json",
-    "rss-to-json",
+    "feed-to-json",
     "rss",
-    "rssparser",
-    "rssreader",
-    "rss reader",
-    "rss parser",
-    "rss",
-    "parser",
-    "reader",
-    "xml2js",
-    "xml2json",
-    "rss to json",
-    "rss2json",
-    "rss 2 json",
-    "feed-read",
-    "feed read",
-    "feed",
-    "feedparser",
-    "feed-parser",
-    "feed parser",
-    "feed-reader",
-    "feedreader",
-    "feed reader",
-    "rss json"
+    "atom",
+    "feed"
   ],
   "devDependencies": {
     "babel-cli": "^6.26.0",
-    "babel-preset-es2015": "^6.24.1"
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.2",
+    "babel-preset-es2015": "^6.24.1",
+    "fs": "0.0.1-security",
+    "net": "^1.0.2",
+    "tls": "0.0.1",
+    "webpack": "^3.10.0",
+    "webpack-dev-server": "^2.11.1"
   },
   "scripts": {
-    "build": "babel src --presets babel-preset-es2015 --out-dir dist",
-    "watch": "babel --watch src --presets babel-preset-es2015 --out-dir dist",
+    "build": "webpack -p --config config/webpack.config.js",
+    "watch": "webpack --watch -p --config config/webpack.config.js",
     "prepublish": "npm run build"
   }
 }
