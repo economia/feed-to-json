@@ -1,4 +1,4 @@
-Smart rss to json
+Feed to json
 =================
 
 Util for parse ATOM and RSS feed resources and normalize them to JSON object.
@@ -6,27 +6,27 @@ Util for parse ATOM and RSS feed resources and normalize them to JSON object.
 ## Install
 
 ```sh
-npm install smart-rss-to-json --save
+npm install feed-to-json --save
 ```
 
 ## ES6 import
 
 ```js
-import Rss from 'smart-rss-to-json'
+import Feed from 'feed-to-json'
 ``` 
 
-## Node js import
+## Common js import
 
 ```js
-const Rss = require('smart-rss-to-json')
+const Feed = require('feed-to-json')
 ```
 
 ## Example
 
 ```js
-import Rss from 'smart-rss-to-json'
+import Feed from 'feed-to-json'
 
-const rss = new Rss()
+const feed = new Feed()
 rss.load('https://www.aktualne.cz/mrss/').then(feed => {
   console.log(feed)
 }).catch(error => {
@@ -84,7 +84,5 @@ rss.load('https://www.aktualne.cz/mrss/').then(feed => {
 
 Name | Default | Required | Description
 --- | --- | --- | ---
+count | null | false | maximum number of items in feed
 timeout | 1000 | false | timeout for http request
-maxCount | null | false | maximum number of items in feed
-maxTimeDiff | null | false | maximum difference in seconds between current timestamp and item date
-
