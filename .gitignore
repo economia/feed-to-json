@@ -10,7 +10,6 @@ app.js
 .log
 note.txt
 .idea
-dist
+dist/
 tmp
-lib/
-!lib/.gitkeep
+!dist/.gitkeep

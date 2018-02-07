@@ -1,0 +1,262 @@
+{
+	"info": {
+		"name": "Feed",
+		"_postman_id": "12c009cd-18c0-f918-798e-e3b6ab308cf1",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "RSS",
+			"description": "",
+			"item": [
+				{
+					"name": "finmag",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "https://feeds.feedburner.com/finmag",
+							"protocol": "https",
+							"host": [
+								"feeds",
+								"feedburner",
+								"com"
+							],
+							"path": [
+								"finmag"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "novinky",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://www.novinky.cz/rss2/vase-zpravy/",
+							"protocol": "http",
+							"host": [
+								"www",
+								"novinky",
+								"cz"
+							],
+							"path": [
+								"rss2",
+								"vase-zpravy",
+								""
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "idnes",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "https://servis.idnes.cz/rss.aspx?c=zpravodaj",
+							"protocol": "https",
+							"host": [
+								"servis",
+								"idnes",
+								"cz"
+							],
+							"path": [
+								"rss.aspx"
+							],
+							"query": [
+								{
+									"key": "c",
+									"value": "zpravodaj",
+									"equals": true
+								}
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "respekt",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "https://feeds.feedburner.com/respekt-clanky",
+							"protocol": "https",
+							"host": [
+								"feeds",
+								"feedburner",
+								"com"
+							],
+							"path": [
+								"respekt-clanky"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "ekonom",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://ekonom.ihned.cz/?m=rss",
+							"protocol": "http",
+							"host": [
+								"ekonom",
+								"ihned",
+								"cz"
+							],
+							"path": [
+								""
+							],
+							"query": [
+								{
+									"key": "m",
+									"value": "rss",
+									"equals": true
+								}
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "ihned",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "https://ihned.cz/?m=rss",
+							"protocol": "https",
+							"host": [
+								"ihned",
+								"cz"
+							],
+							"path": [
+								""
+							],
+							"query": [
+								{
+									"key": "m",
+									"value": "rss",
+									"equals": true
+								}
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "aktualne",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "https://www.aktualne.cz/mrss/",
+							"protocol": "https",
+							"host": [
+								"www",
+								"aktualne",
+								"cz"
+							],
+							"path": [
+								"mrss",
+								""
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "forbes",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://www.forbes.cz/feed/",
+							"protocol": "http",
+							"host": [
+								"www",
+								"forbes",
+								"cz"
+							],
+							"path": [
+								"feed",
+								""
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "jenpromuze",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://www.jenpromuze.cz/feed",
+							"protocol": "http",
+							"host": [
+								"www",
+								"jenpromuze",
+								"cz"
+							],
+							"path": [
+								"feed"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "root",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "https://www.root.cz/rss/clanky/",
+							"protocol": "https",
+							"host": [
+								"www",
+								"root",
+								"cz"
+							],
+							"path": [
+								"rss",
+								"clanky",
+								""
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
