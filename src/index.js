@@ -1,17 +1,17 @@
-import request from 'request'
-import xml2js from 'xml2js'
-import { Rss } from './parsers/Rss'
+const request = require('request')
+const xml2js = require('xml2js')
+const RssParser = require('./parsers/RssParser')
 
-export default class Feed {
+class Feed {
   /**
    * @param options
    */
   constructor(options) {
     this.options = Object.assign({}, {
       timeout: 1000,
-      maxCount: null,
-      maxTimeDiff: null
+      count: null
     }, options)
+    this.request = request
     this.xmlParser = new xml2js.Parser({trim: false, normalize: true, mergeAttrs: true})
   }
 
@@ -37,7 +37,7 @@ export default class Feed {
    */
   sendRequest(url) {
     return new Promise((resolve, reject) => {
-      request({
+      this.request.get({
         url: url,
         headers: {
           accept: 'application/rss+xml'
@@ -78,11 +78,13 @@ export default class Feed {
   parseFeed(data) {
     return new Promise((resolve, reject) => {
       if (data.rss) {
-        const result = new Rss(this.options).parse(data.rss.channel[0])
-        return resolve(result)
+        const rssParser = new RssParser(this.options)
+        return resolve(rssParser.parse(data.rss.channel[0]))
       }
 
       reject(new Error('Unknown feed type'))
     })
   }
 }
+
+module.exports = Feed

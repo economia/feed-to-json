@@ -1,14 +1,13 @@
 const URL = require('url').parse
 
-export class Rss {
+class RssParser {
 
   /**
    * @param options
    */
   constructor (options) {
     this.options = Object.assign({}, {
-      maxCount: null,
-      maxTimeDiff: null
+      count: null
     }, options)
   }
 
@@ -55,11 +54,10 @@ export class Rss {
    * @returns {Array}
    */
   parseItems (data) {
-    const items = []
+    const source = data.item || []
+    const count = this.options.count || source.length
 
-    items.push(this.parseItem(data.item[0]))
-
-    return items
+    return source.slice(0, count).map(item => this.parseItem(item))
   }
 
   /**
@@ -86,14 +84,14 @@ export class Rss {
   parseEnclosure (data) {
     let media = []
 
-    if (data['media:group']) {
-      media = data['media:group'][0]['media:content']
+    if (data['enclosure']) {
+      media = data['enclosure']
     }
     if (data['media:content']) {
       media = data['media:content']
     }
-    if (data['enclosure']) {
-      media = data['enclosure']
+    if (data['media:group'] && data['media:group'][0]['media:content']) {
+      media = data['media:group'][0]['media:content']
     }
 
     return media.map(element => this.parseImage(element))
@@ -126,7 +124,7 @@ export class Rss {
         resultKey = attribute.as
       }
 
-      result[resultKey] = this.extractAttr(inputKey, data)
+      result[resultKey] = this.extractAttribute(inputKey, data)
     })
 
     return result
@@ -138,7 +136,9 @@ export class Rss {
    * @param empty
    * @returns {*}
    */
-  extractAttr (attribute, input, empty) {
+  extractAttribute (attribute, input, empty) {
     return input[attribute] ? input[attribute][0] : empty
   }
 }
+
+module.exports = RssParser
