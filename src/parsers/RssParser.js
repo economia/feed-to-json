@@ -3,16 +3,30 @@ const URL = require('url').parse
 class RssParser {
 
   /**
-   * @param options
+   * @param {Object} options
    */
-  constructor (options) {
-    this.options = Object.assign({}, {
-      count: null
-    }, options)
+  constructor (options = {}) {
+    this.options = options
   }
 
   /**
-   * @param data
+   * @returns {Object}
+   */
+  get options () {
+    return this._options || {
+      count: null
+    }
+  }
+
+  /**
+   * @param {Object} options
+   */
+  set options (options) {
+    this._options = Object.assign({}, this.options, options)
+  }
+
+  /**
+   * @param {Object} data
    * @returns {Object}
    */
   parse (data) {
@@ -24,7 +38,7 @@ class RssParser {
   }
 
   /**
-   * @param data
+   * @param {Object} data
    * @returns {Object}
    */
   parseChannel (data) {
@@ -42,7 +56,7 @@ class RssParser {
   }
 
   /**
-   * @param data
+   * @param {Object} data
    * @returns {Object}
    */
   parseChannelImage (data) {
@@ -50,7 +64,7 @@ class RssParser {
   }
 
   /**
-   * @param data
+   * @param {Object} data
    * @returns {Array}
    */
   parseItems (data) {
@@ -61,7 +75,7 @@ class RssParser {
   }
 
   /**
-   * @param data
+   * @param {Object} data
    * @returns {Object}
    */
   parseItem (data) {
@@ -78,7 +92,7 @@ class RssParser {
   }
 
   /**
-   * @param data
+   * @param {Object} data
    * @returns {Array}
    */
   parseEnclosure (data) {
@@ -98,7 +112,7 @@ class RssParser {
   }
 
   /**
-   * @param data
+   * @param {Object} data
    * @returns {Object}
    */
   parseImage (data) {
@@ -108,8 +122,8 @@ class RssParser {
   }
 
   /**
-   * @param structure
-   * @param data
+   * @param {Array} structure
+   * @param {Object} data
    * @returns {Object}
    */
   extractStructure (structure, data) {
@@ -131,8 +145,8 @@ class RssParser {
   }
 
   /**
-   * @param attribute
-   * @param input
+   * @param {String} attribute
+   * @param {Object} input
    * @param empty
    * @returns {*}
    */

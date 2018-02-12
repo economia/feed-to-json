@@ -1,62 +1,64 @@
-const request = require('request')
+const axios = require('axios')
 const xml2js = require('xml2js')
 const RssParser = require('./parsers/RssParser')
 
 class Feed {
   /**
-   * @param options
+   * @param {Object} options
    */
-  constructor(options) {
-    this.options = Object.assign({}, {
-      timeout: 1000,
-      count: null
-    }, options)
-    this.request = request
+  constructor(options = {}) {
+    this.options = options
     this.xmlParser = new xml2js.Parser({trim: false, normalize: true, mergeAttrs: true})
   }
 
   /**
-   * @param url
-   * @param options
+   * @returns {Object}
+   */
+  get options () {
+    return this._options || {
+      timeout: 1000,
+      count: null,
+      headers: {}
+    }
+  }
+
+  /**
+   * @param {Object} options
+   */
+  set options (options) {
+    this._options = Object.assign({}, this.options, options)
+  }
+
+  /**
+   * @param {String} url
+   * @param {Object} options
    * @returns {Promise}
    */
-  load(url, options) {
-    this.options = Object.assign({}, this.options, options)
+  load(url, options = {}) {
+    this.options = options
 
     return this.sendRequest(url)
       .then(response => {
-        return this.parseXmlToJson(response.xml)
+        return this.parseXmlToJson(response.data)
       }).then(json => {
         return this.parseFeed(json)
       })
   }
 
   /**
-   * @param url
+   * @param {String} url
    * @returns {Promise}
    */
   sendRequest(url) {
-    return new Promise((resolve, reject) => {
-      this.request.get({
-        url: url,
-        headers: {
-          accept: 'application/rss+xml'
-        },
-        pool: false,
-        followRedirect: true,
-        timeout: this.options.timeout
-      }, (error, response, xml) => {
-        if (error || response.statusCode !== 200) {
-          return reject(error)
-        }
-
-        return resolve({response, xml})
-      })
+    this.options.headers = Object.assign({}, this.options.headers, {
+      Accept: 'application/rss+xml'
     })
+
+    return axios.get(url, this.options)
   }
 
   /**
-   * @param xml
+   * @param {String} xml
    * @returns {Promise}
    */
   parseXmlToJson(xml) {
@@ -72,7 +74,7 @@ class Feed {
   }
 
   /**
-   * @param data
+   * @param {Object} data
    * @returns {Promise}
    */
   parseFeed(data) {
@@ -82,7 +84,7 @@ class Feed {
         return resolve(rssParser.parse(data.rss.channel[0]))
       }
 
-      reject(new Error('Unknown feed type'))
+      return reject(new Error('Unknown feed type'))
     })
   }
 }

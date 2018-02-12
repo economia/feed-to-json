@@ -9,7 +9,7 @@
   ],
   "license": "MIT",
   "dependencies": {
-    "request": "^2.83.0",
+    "axios": "^0.17.1",
     "xml2js": "^0.4.19"
   },
   "repository": {
