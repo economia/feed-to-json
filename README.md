@@ -12,7 +12,7 @@ npm install eco-feed-to-json --save
 ## ES6 import
 
 ```js
-import Feed from 'feed-to-json'
+import Feed from 'eco-feed-to-json'
 ``` 
 
 ## Common js import
