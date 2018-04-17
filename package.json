@@ -1,9 +1,9 @@
 {
-  "name": "feed-to-json",
+  "name": "eco-feed-to-json",
   "version": "1.0.0",
   "description": "Feed to Json: RSS and Atom feed generator for Node.js",
   "module": "src/index.js",
-  "main": "lib/feed-to-json.js",
+  "main": "dist/eco-feed-to-json.js",
   "contributors": [
     "Kryštof Matějka <krystof.matejka@economia.cz>"
   ],
