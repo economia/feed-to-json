@@ -1,6 +1,6 @@
 {
   "name": "eco-feed-to-json",
-  "version": "1.0.0",
+  "version": "1.3.0",
   "description": "Feed to Json: RSS and Atom feed generator for Node.js",
   "module": "src/index.js",
   "main": "dist/eco-feed-to-json.js",
