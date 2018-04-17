@@ -6,7 +6,7 @@ Util for parse ATOM and RSS feed resources and normalize them to JSON object.
 ## Install
 
 ```sh
-npm install feed-to-json --save
+npm install eco-feed-to-json --save
 ```
 
 ## ES6 import
@@ -18,16 +18,16 @@ import Feed from 'feed-to-json'
 ## Common js import
 
 ```js
-const Feed = require('feed-to-json')
+const Feed = require('eco-feed-to-json')
 ```
 
 ## Example
 
 ```js
-import Feed from 'feed-to-json'
+import Feed from 'eco-feed-to-json'
 
 const feed = new Feed()
-rss.load('https://www.aktualne.cz/mrss/').then(feed => {
+feed.load('https://www.aktualne.cz/mrss/').then(feed => {
   console.log(feed)
 }).catch(error => {
   console.error(error)

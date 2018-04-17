@@ -6,9 +6,9 @@ module.exports = {
   target: 'web',
   output: {
     path: path.resolve(__dirname, '../dist'),
-    filename: 'feed-to-json.js',
+    filename: 'eco-feed-to-json.js',
     publicPath: '/',
-    library: 'feed-to-json',
+    library: 'eco-feed-to-json',
     libraryTarget: 'umd',
   },
   module: {
