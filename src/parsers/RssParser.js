@@ -69,12 +69,9 @@ class RssParser {
    */
   parseItem (data) {
     const item = this.extractStructure([
-      'title', 'description', 'link', {target: 'pubDate', as: 'date'}, 'timestamp'
+      'title', 'description', 'link', {target: 'pubDate', as: 'date'}
     ], data)
 
-    if (item.date) {
-      item.timestamp = parseInt(new Date(item.date).getTime() / 1000)
-    }
     item.media = this.parseEnclosure(data)
 
     return item
