@@ -6,25 +6,25 @@ Util for parse ATOM and RSS feed resources and normalize them to JSON object.
 ## Install
 
 ```sh
-npm install eco-feed-to-json --save
+npm install feed-to-json-promise --save
 ```
 
 ## ES6 import
 
 ```js
-import Feed from 'eco-feed-to-json'
+import Feed from 'feed-to-json-promise'
 ``` 
 
 ## Common js import
 
 ```js
-const Feed = require('eco-feed-to-json')
+const Feed = require('feed-to-json-promise')
 ```
 
 ## Example
 
 ```js
-import Feed from 'eco-feed-to-json'
+import Feed from 'feed-to-json-promise'
 
 const feed = new Feed()
 feed.load('https://www.aktualne.cz/mrss/').then(feed => {
