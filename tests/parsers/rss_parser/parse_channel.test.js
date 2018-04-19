@@ -20,9 +20,7 @@ describe('Parsers.RssParser.parseChannel', () => {
     return expect(result).to.deep.equals({
       title: 'feed',
       description: 'test feed',
-      link: 'https://feed.com/mrss/',
-      domain: 'feed.com',
-      name: 'feed'
+      link: 'https://feed.com/mrss/'
     })
   })
 })
