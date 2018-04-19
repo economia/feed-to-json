@@ -1,7 +1,4 @@
-const URL = require('url').parse
-
 class RssParser {
-
   /**
    * @param {Object} options
    */
@@ -42,17 +39,9 @@ class RssParser {
    * @returns {Object}
    */
   parseChannel (data) {
-    const channel = this.extractStructure([
-      'title', 'description', 'link', 'domain', 'name'
+    return this.extractStructure([
+      'title', 'description', 'link'
     ], data)
-
-    if (channel.link) {
-      const url = URL(channel.link)
-      channel.domain = url.hostname.replace(/(http:\/\/|https:\/\/|\/|www.|blog.)/g, '')
-      channel.name = channel.domain.split('.').slice(0, 1)[0]
-    }
-
-    return channel
   }
 
   /**
