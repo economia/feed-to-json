@@ -1,6 +1,6 @@
 {
   "name": "feed-to-json-promise",
-  "version": "1.3.1",
+  "version": "1.4.0",
   "description": "Feed to Json: RSS and Atom feed parser",
   "module": "dist/feed-to-json-promise.web.js",
   "main": "dist/feed-to-json-promise.node.js",
