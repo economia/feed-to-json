@@ -22,8 +22,6 @@ describe('Parsers.RssParser.parse', () => {
       title: 'feed',
       description: 'test feed',
       link: 'https://feed.com/mrss/',
-      domain: 'feed.com',
-      name: 'feed',
       image: undefined,
       items: []
     })

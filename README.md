@@ -6,28 +6,28 @@ Util for parse ATOM and RSS feed resources and normalize them to JSON object.
 ## Install
 
 ```sh
-npm install eco-feed-to-json --save
+npm install feed-to-json-promise --save
 ```
 
 ## ES6 import
 
 ```js
-import Feed from 'eco-feed-to-json'
+import Feed from 'feed-to-json-promise'
 ``` 
 
 ## Common js import
 
 ```js
-const Feed = require('eco-feed-to-json')
+const Feed = require('feed-to-json-promise')
 ```
 
 ## Example
 
 ```js
-import Feed from 'eco-feed-to-json'
+import Feed from 'feed-to-json-promise'
 
 const feed = new Feed()
-feed.load('https://www.aktualne.cz/mrss/').then(feed => {
+feed.load('http://rss.nytimes.com/services/xml/rss/nyt/HomePage.xml').then(feed => {
   console.log(feed)
 }).catch(error => {
   console.error(error)
@@ -38,43 +38,28 @@ feed.load('https://www.aktualne.cz/mrss/').then(feed => {
 ```json
 
 {
-  "title": "Aktuálně.cz",
-  "description": "Aktuálně.cz - kompletní zpravodajství, zprávy z domova i ze světa",
-  "link": "https://www.aktualne.cz/",
-  "domain": "aktualne.cz",
-  "name": "aktualne",
+  "title": "NYT > Home Page",
+  "description": "The New York Times: Find breaking news",
+  "link": "http://www.nytimes.com/pages/index.html?partner=rss&emc=rss",
   "image": {
-    "url": "https://i0.cz/bbx-8/aktualnehp/img/acz-desktop-logo-dark.png",
-    "title": "Aktuálně.cz",
-    "description": "Aktuálně.cz - kompletní zpravodajství",
-    "width": "436",
-    "height": "374"
+    "title": "NYT > Home Page",
+    "url": "https://static01.nyt.com/images/misc/NYT_logo_rss_250x40.png"
   },
   "items":[
     {
-      "title": "Držme si palce, ať přijde změna, řekl Hilšer. Žena mu zakázala další kandidaturu do sedmdesáti",
-      "description": "Průzkumy Marku Hilšerovi předpovídaly maximálně pět procent, nakonec dosáhl téměř na devět. Jiřímu Drahošovi nabídl pomoc v kampani před druhým kolem.",
-      "link": "https://zpravy.aktualne.cz/domaci/drama-dopadlo-dobre-drzme-si-palce-at-prijde-zmena-rekl-hils/r~415cedd2f88811e7988aac1f6b220ee8/",
-      "date": "Sat, 13 Jan 2018 23:15:13 +0100",
-      "timestamp": 1515881713000,
-      "media": {
-        "thumbnail": {
-            "url": "https://cdn.i0.cz/public-data/34/08/fc1aa5f739dd8ba762522e86747f_r4:3_w200_h150_gf1ea9e8af87c11e7afac0cc47ab5f122.jpg",
-            "title": "Hilšer",
-            "description": "Držme si palce",
-            "width": "200",
-            "height:": "150"
-        },
-        "content": [
-          {
-            "url": "https://cdn.i0.cz/public-data/34/08/fc1aa5f739dd8ba762522e86747f_r3:2_w396_h264_gf1ea9e8af87c11e7afac0cc47ab5f122.jpg",
-            "title": "Hilšer",
-            "description": "Držme si palce",
-            "width": "396",
-            "height:": "264"
-          }
-        ]
-      }
+      "title": "North Korea, Cuba, Southwest Airlines: Your Thursday Briefing",
+      "description": "Here’s what you need to know to start your day.",
+      "link": "https://www.nytimes.com/2018/04/19/briefing/north-korea-cuba-southwest-airlines.html?partner=rss&emc=rss",
+      "date": "Thu, 19 Apr 2018 12:45:36 GMT",
+      "media": [
+        {
+          "url": "https://static01.nyt.com/images/2018/04/19/world/americas/19us-ambriefing-castro/19us-ambriefing-castro-moth.jpg",
+          "title": "North Korea",
+          "description": "North Korea, Cuba, Southwest Airlines",
+          "width": "396",
+          "height:": "264"
+        }
+      ]
     }
   ]
 }
