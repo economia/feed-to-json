@@ -103,16 +103,16 @@ class RssParser {
     let media = []
 
     if (data['enclosure']) {
-      media = media.concat(data['enclosure'].map(element => this.parseImage(element)))
+      media = data['enclosure']
     }
     if (data['media:content']) {
-      media = media.concat(data['media:content'].map(element => this.parseImage(element)))
+      media = data['media:content']
     }
     if (data['media:group'] && data['media:group'][0]['media:content']) {
-      media = media.concat(data['media:group'][0]['media:content'].map(element => this.parseImage(element)))
+      media = data['media:group'][0]['media:content']
     }
 
-    return media
+    return media.map(element => this.parseImage(element))
   }
 
   /**
