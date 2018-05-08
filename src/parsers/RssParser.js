@@ -72,29 +72,47 @@ class RssParser {
       'title', 'description', 'link', {target: 'pubDate', as: 'date'}
     ], data)
 
-    item.media = this.parseEnclosure(data)
+    item.thumbnail = this.parseThumbnail(data)
+    item.media = this.parseMedia(data)
 
     return item
+  }
+
+  /**
+   * @param data
+   * @returns {Object}
+   */
+  parseThumbnail (data) {
+    let thumbnail
+
+    if (data['media:thumbnail']) {
+      thumbnail = this.parseImage(data['media:thumbnail'][0])
+    }
+    if (data['media:group'] && data['media:group'][0]['media:thumbnail']) {
+      thumbnail = this.parseImage(data['media:group'][0]['media:thumbnail'][0])
+    }
+
+    return thumbnail
   }
 
   /**
    * @param {Object} data
    * @returns {Array}
    */
-  parseEnclosure (data) {
+  parseMedia (data) {
     let media = []
 
     if (data['enclosure']) {
-      media = data['enclosure']
+      media = media.concat(data['enclosure'].map(element => this.parseImage(element)))
     }
     if (data['media:content']) {
-      media = data['media:content']
+      media = media.concat(data['media:content'].map(element => this.parseImage(element)))
     }
     if (data['media:group'] && data['media:group'][0]['media:content']) {
-      media = data['media:group'][0]['media:content']
+      media = media.concat(data['media:group'][0]['media:content'].map(element => this.parseImage(element)))
     }
 
-    return media.map(element => this.parseImage(element))
+    return media
   }
 
   /**

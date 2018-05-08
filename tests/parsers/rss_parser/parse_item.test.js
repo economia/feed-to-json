@@ -20,6 +20,7 @@ describe('Parsers.RssParser.parseItems', () => {
       description: 'something',
       link: 'https://feed.com/article',
       date: 'Wed, 07 Feb 2018 12:14:35 +0100',
+      thumbnail: undefined,
       media: []
     }
   })
