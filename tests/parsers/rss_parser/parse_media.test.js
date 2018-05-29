@@ -3,7 +3,7 @@ const RssParser = require('../../../src/parsers/RssParser')
 
 const expect = chai.expect
 
-describe('Parsers.RssParser.parseEnclosure', () => {
+describe('Parsers.RssParser.parseMedia', () => {
 
   before(() => {
     this.rssParser = new RssParser()
@@ -30,7 +30,7 @@ describe('Parsers.RssParser.parseEnclosure', () => {
 
 
   it('should parse media from enclosure tag', () => {
-    const result = this.rssParser.parseEnclosure({
+    const result = this.rssParser.parseMedia({
       enclosure: [
         this.feedImage
       ]
@@ -43,7 +43,7 @@ describe('Parsers.RssParser.parseEnclosure', () => {
 
 
   it('should parse media from media:content tag', () => {
-    const result = this.rssParser.parseEnclosure({
+    const result = this.rssParser.parseMedia({
       'media:content': [
         this.feedImage
       ]
@@ -56,7 +56,7 @@ describe('Parsers.RssParser.parseEnclosure', () => {
 
 
   it('should parse media from media:group tag', () => {
-    const result = this.rssParser.parseEnclosure({
+    const result = this.rssParser.parseMedia({
       'media:group': [
         {
           'media:content': [
