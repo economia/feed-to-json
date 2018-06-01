@@ -72,10 +72,40 @@ class RssParser {
       'title', 'description', 'link', {target: 'pubDate', as: 'date'}
     ], data)
 
+    item.guid = this.parseGuid(data)
+    item.categories = this.parseCategories(data)
     item.thumbnail = this.parseThumbnail(data)
     item.media = this.parseMedia(data)
 
     return item
+  }
+
+  /**
+   * @param {Object} data
+   * @returns {Array}
+   */
+  parseCategories (data) {
+    let categories
+
+    if (data['category']) {
+      categories = data['category'].map(category => this.extractValueFromObject(category))
+    }
+
+    return categories
+  }
+
+  /**
+   * @param {Object} data
+   * @returns {String}
+   */
+  parseGuid (data) {
+    let guid
+
+    if (data['guid']) {
+      guid = this.extractValueFromObject(data['guid'][0])
+    }
+
+    return guid
   }
 
   /**
@@ -156,6 +186,18 @@ class RssParser {
    */
   extractAttribute (attribute, input, empty) {
     return input[attribute] ? input[attribute][0] : empty
+  }
+
+  /**
+   * @param {*} input
+   * @returns {String}
+   */
+  extractValueFromObject (input) {
+    if (input instanceof Object) {
+      return input['_']
+    }
+
+    return input
   }
 }
 

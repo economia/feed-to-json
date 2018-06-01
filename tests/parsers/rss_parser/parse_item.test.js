@@ -12,7 +12,9 @@ describe('Parsers.RssParser.parseItems', () => {
       title: ['item item'],
       description: ['something'],
       link: ['https://feed.com/article'],
-      pubDate: ['Wed, 07 Feb 2018 12:14:35 +0100']
+      pubDate: ['Wed, 07 Feb 2018 12:14:35 +0100'],
+      guid: ['https://feed.com/article'],
+      category: ['test', 'test2']
     }
 
     this.parsedItem = {
@@ -21,7 +23,9 @@ describe('Parsers.RssParser.parseItems', () => {
       link: 'https://feed.com/article',
       date: 'Wed, 07 Feb 2018 12:14:35 +0100',
       thumbnail: undefined,
-      media: []
+      media: [],
+      guid: 'https://feed.com/article',
+      categories: ['test', 'test2']
     }
   })
 

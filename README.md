@@ -50,6 +50,8 @@ feed.load('http://rss.nytimes.com/services/xml/rss/nyt/HomePage.xml').then(feed 
       "title": "North Korea, Cuba, Southwest Airlines: Your Thursday Briefing",
       "description": "Here’s what you need to know to start your day.",
       "link": "https://www.nytimes.com/2018/04/19/briefing/north-korea-cuba-southwest-airlines.html?partner=rss&emc=rss",
+      "guid": "https://www.nytimes.com/2018/06/01/briefing/tariffs-italy-telegram-your-friday-briefing.html",
+      "categories": ["North Korea", "Cuba"],
       "date": "Thu, 19 Apr 2018 12:45:36 GMT",
       "media": [
         {
