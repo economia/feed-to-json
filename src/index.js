@@ -63,7 +63,8 @@ class Feed {
    */
   parseXmlToJson(xml) {
     return new Promise((resolve, reject) => {
-      this.xmlParser.parseString(xml, (error, json) => {
+      const escaped = xml.replace(/\s&\s/g, ' &amp; ')
+      this.xmlParser.parseString(escaped, (error, json) => {
         if (error) {
           return reject(error)
         }
