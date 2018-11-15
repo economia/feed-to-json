@@ -68,8 +68,11 @@ class RssParser {
    * @returns {Object}
    */
   parseItem (data) {
+    const {
+      extraParsedItemFields = []
+    } = this.options
     const item = this.extractStructure([
-      'title', 'description', 'link', {target: 'pubDate', as: 'date'}
+      'title', 'description', 'link', {target: 'pubDate', as: 'date'}, ...extraParsedItemFields
     ], data)
 
     item.guid = this.parseGuid(data)
