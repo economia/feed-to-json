@@ -1,13 +1,22 @@
 const axios = require('axios')
+const https = require('https')
 const xml2js = require('xml2js')
 const RssParser = require('./parsers/RssParser')
+
+const axiosOmitSSLCert = axios.create({
+  httpsAgent: new https.Agent({
+    rejectUnauthorized: false,
+  })
+})
 
 class Feed {
   /**
    * @param {Object} options
+   * @param {boolean} omitSSLCert
    */
-  constructor(options = {}) {
+  constructor (options = {}, omitSSLCert = false) {
     this.options = options
+    this.omitSSLCert = omitSSLCert
     this.xmlParser = new xml2js.Parser({trim: false, normalize: true, mergeAttrs: true})
   }
 
@@ -34,7 +43,7 @@ class Feed {
    * @param {Object} options
    * @returns {Promise}
    */
-  load(url, options = {}) {
+  load (url, options = {}) {
     this.options = options
 
     return this.sendRequest(url)
@@ -49,19 +58,19 @@ class Feed {
    * @param {String} url
    * @returns {Promise}
    */
-  sendRequest(url) {
+  sendRequest (url) {
     this.options.headers = Object.assign({}, this.options.headers, {
       Accept: 'application/rss+xml'
     })
 
-    return axios.get(url, this.options)
+    return this.client.get(url, this.options)
   }
 
   /**
    * @param {String} xml
    * @returns {Promise}
    */
-  parseXmlToJson(xml) {
+  parseXmlToJson (xml) {
     return new Promise((resolve, reject) => {
       const escaped = xml.replace(/\s&\s/g, ' &amp; ')
       this.xmlParser.parseString(escaped, (error, json) => {
@@ -78,7 +87,7 @@ class Feed {
    * @param {Object} data
    * @returns {Promise}
    */
-  parseFeed(data) {
+  parseFeed (data) {
     return new Promise((resolve, reject) => {
       if (data.rss) {
         const rssParser = new RssParser(this.options)
@@ -87,6 +96,28 @@ class Feed {
 
       return reject(new Error('Unknown feed type'))
     })
+  }
+
+  /**
+   * @return {boolean}
+   */
+  get omitSSLCert () {
+    return this._omitSSLCert
+  }
+
+  /**
+   * @param {boolean} value
+   */
+  set omitSSLCert (value) {
+    this._omitSSLCert = value;
+  }
+
+  /**
+   *
+   * @return {axios}
+   */
+  get client () {
+    return this.omitSSLCert ? axiosOmitSSLCert : axios
   }
 }
 
