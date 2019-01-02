@@ -1,22 +1,14 @@
 const axios = require('axios')
-const https = require('https')
 const xml2js = require('xml2js')
 const RssParser = require('./parsers/RssParser')
-
-const axiosOmitSSLCert = axios.create({
-  httpsAgent: new https.Agent({
-    rejectUnauthorized: false,
-  })
-})
 
 class Feed {
   /**
    * @param {Object} options
-   * @param {boolean} omitSSLCert
    */
-  constructor (options = {}, omitSSLCert = false) {
+  constructor (options = {}) {
+    this.client = axios
     this.options = options
-    this.omitSSLCert = omitSSLCert
     this.xmlParser = new xml2js.Parser({trim: false, normalize: true, mergeAttrs: true})
   }
 
@@ -117,7 +109,15 @@ class Feed {
    * @return {axios}
    */
   get client () {
-    return this.omitSSLCert ? axiosOmitSSLCert : axios
+    return this._client
+  }
+
+  /**
+   *
+   * @param value
+   */
+  set client (value) {
+    this._client = value;
   }
 }
 
