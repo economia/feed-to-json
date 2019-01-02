@@ -91,20 +91,6 @@ class Feed {
   }
 
   /**
-   * @return {boolean}
-   */
-  get omitSSLCert () {
-    return this._omitSSLCert
-  }
-
-  /**
-   * @param {boolean} value
-   */
-  set omitSSLCert (value) {
-    this._omitSSLCert = value;
-  }
-
-  /**
    *
    * @return {axios}
    */
