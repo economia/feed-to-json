@@ -14,7 +14,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://bitbucket.org/it-economia/feed-to-json.git"
+    "url": "git+https://github.com/economia/feed-to-json.git"
+  },
+  "bugs": {
+    "url": "https://github.com/economia/feed-to-json/issues"
   },
   "homepage": "https://bitbucket.org/it-economia/feed-to-json/overview",
   "keywords": [
