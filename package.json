@@ -19,7 +19,7 @@
   "bugs": {
     "url": "https://github.com/economia/feed-to-json/issues"
   },
-  "homepage": "https://bitbucket.org/it-economia/feed-to-json/overview",
+  "homepage": "https://github.com/economia/feed-to-json",
   "keywords": [
     "feed-to-json",
     "feed-to-json-promise",
