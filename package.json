@@ -1,5 +1,5 @@
 {
-  "name": "feed-to-json-promise",
+  "name": "@economia/feed-to-json-promise",
   "version": "1.8.2",
   "description": "Feed to Json: RSS and Atom feed parser",
   "module": "dist/feed-to-json-promise.web.js",
@@ -48,5 +48,9 @@
     "watch": "webpack --watch -p --config config/webpack.config.js",
     "prepublish": "npm run build",
     "test": "mocha tests --recursive"
-  }
+  },
+  "directories": {
+    "test": "tests"
+  },
+  "author": "sklep@economia.cz"
 }
