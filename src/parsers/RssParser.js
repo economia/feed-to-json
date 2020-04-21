@@ -145,6 +145,19 @@ class RssParser {
       media = data['media:group'][0]['media:content']
     }
 
+    if (media[0]['media:url']) {
+      media[0].url = media[0]['media:url']
+    }
+    if (media[0]['media:width']) {
+      media[0].width = media[0]['media:width']
+    }
+    if (media[0]['media:height']) {
+      media[0].height = media[0]['media:height']
+    }
+    if (media[0]['media:description']) {
+      media[0].description = media[0]['media:description']
+    }
+
     return media.map(element => this.parseImage(element))
   }
 
