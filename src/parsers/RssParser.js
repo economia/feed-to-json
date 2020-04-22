@@ -145,19 +145,6 @@ class RssParser {
       media = data['media:group'][0]['media:content']
     }
 
-    if (media[0]['media:url']) {
-      media[0].url = media[0]['media:url']
-    }
-    if (media[0]['media:width']) {
-      media[0].width = media[0]['media:width']
-    }
-    if (media[0]['media:height']) {
-      media[0].height = media[0]['media:height']
-    }
-    if (media[0]['media:description']) {
-      media[0].description = media[0]['media:description']
-    }
-
     return media.map(element => this.parseImage(element))
   }
 
@@ -167,7 +154,7 @@ class RssParser {
    */
   parseImage (data) {
     return this.extractStructure([
-      'url', 'title', 'description', 'width', 'height', 'type'
+      'url', 'title', 'description', 'width', 'height', 'type', , {target: 'media:height', as: 'height'}, {target: 'media:width', as: 'width'}, {target: 'media:description', as: 'description'}, {target: 'media:url', as: 'url'}
     ], data)
   }
 
@@ -183,9 +170,11 @@ class RssParser {
       let inputKey = attribute
       let resultKey = attribute
 
-      if (attribute instanceof Object) {
+      if (attribute instanceof Object && !data[attribute.as]) {
         inputKey = attribute.target
         resultKey = attribute.as
+      } else if (attribute instanceof Object) {
+        return
       }
 
       result[resultKey] = this.extractAttribute(inputKey, data)
