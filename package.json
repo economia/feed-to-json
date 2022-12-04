@@ -37,7 +37,7 @@
     "chai": "^4.3.6",
     "chai-as-promised": "^7.1.1",
     "fs": "0.0.1-security",
-    "mocha": "^6.2.3",
+    "mocha": "^10.1.0",
     "net": "^1.0.2",
     "sinon": "4.5.0",
     "sinon-stub-promise": "^4.0.0",
